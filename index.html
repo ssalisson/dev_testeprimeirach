@@ -8,6 +8,12 @@
 </head>
 <body>
     <div class="container">
+        <div class="logo-container">
+            <img src="styles/css/logo.png" alt="Logo SSA" class="main-logo">
+        </div>
+        
+        <div class="header-divider"></div>
+
         <div class="logonome">
             <h1>Calculadora SSA-3</h1>
             <p>Primeira Chamada</p>
@@ -17,7 +23,7 @@
         <div id="passo1">
             <div class="search-box">
                 <label for="searchNome">Qual o seu nome?</label>
-                <input type="text" id="searchNome" placeholder="Digite pelo menos 3 letras..." autocomplete="off">
+                <input type="text" id="searchNome" placeholder="Digite seu nome completo..." autocomplete="off">
                 <div id="searchResults" class="search-results"></div>
             </div>
         </div>
@@ -133,23 +139,20 @@
             <input type="hidden" id="nota2">
             <input type="hidden" id="nota3">
 
-            <button onclick="calcularNota3()" style="margin-top: 20px;">Ver Resultado</button>
+            <button onclick="calcularNota3()" style="margin-top: 20px;">Calcular nota do SSA</button>
         </div>
     
         <button id="btn2" onclick="limparTudo()"><i style="margin-right: 5px;" class="fa-solid fa-trash"></i>Limpar Tudo</button>
     
         <div class="result" id="resultado"></div>
-    </div>
 
-    <div class="detailed-results container" id="detalhes" style="display: none;">
-        <h2>Detalhamento das Notas</h2>
-        <p>Nota do Primeiro Ano (SSA-1): <span id="nota1Detalhe"></span></p>
-        <p>Nota do Segundo Ano (SSA-2): <span id="nota2Detalhe"></span></p>
-        <p>Nota da Redação: <span id="notaRedacaoDetalhe"></span></p>
-        <p>Nota da prova objetiva (SSA-3): <span id="nota3Detalhe"></span></p>
-        <p>Média Final no SSA-3: <span id="notaFinal"></span></p>
-        <p>Nota de corte do curso: <span id="notaCorteCurso"></span></p>
-        <p>Classificação: <span id="classificacao"></span></p>
+        <div class="detailed-results" id="detalhes" style="display: none;">
+            <h2>Detalhamento das Notas</h2>
+            <p>Nota da prova objetiva (SSA-3): <span id="nota3Detalhe"></span></p>
+            <p>Média Final no SSA-3: <span id="notaFinal"></span></p>
+            <p>Nota de corte do curso: <span id="notaCorteCurso"></span></p>
+            <p>Classificação: <span id="classificacao"></span></p>
+        </div>
     </div>
 
     <script src="js/index.js"></script>

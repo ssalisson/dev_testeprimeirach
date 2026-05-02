@@ -172,12 +172,19 @@ function calcularNota3() {
       const N5 = N4 - notaRedacao;
       const nota3Necessaria = N5 / 3;
 
+      const nota3Arredondada = Math.max(0, nota3Necessaria);
       const questoesNecessarias = Math.max(0, Math.ceil(nota3Necessaria / 1.053));
-      nota3Input.value = "";
-      resultadoDiv.innerHTML = 'Você precisa acertar ' + questoesNecessarias + ' questões no SSA-3';
-          resultadoDiv.style.fontSize = "20px";
-          resultadoDiv.style.fontWeight = "bold";
+      
+      resultadoDiv.innerHTML = `
+        <div class="result-title">Sua nota na prova objetiva deve ser:</div>
+        <div class="result-value">${nota3Arredondada.toFixed(2)}</div>
+        <div class="result-subtitle">Você precisa acertar <strong>${questoesNecessarias}</strong> questões no SSA-3</div>
+      `;
       resultadoDiv.style.display = "block";
+
+      // Mostrar detalhamento
+      const mediaFinal = corte; // A nota necessária é justamente para atingir o corte
+      mostrarDetalhes(nota1, nota2, notaRedacao, nota3Arredondada, corte, mediaFinal, campus);
 
   } else {
       resultadoDiv.innerHTML = "Curso não encontrado.";
@@ -188,27 +195,25 @@ function calcularNota3() {
 
 function mostrarDetalhes(nota1, nota2, notaRedacao, nota3, notaCorte, mediaFinal, campus) {
   const detalhesDiv = document.getElementById("detalhes");
-  const nota1Detalhe = document.getElementById("nota1Detalhe");
-  const nota2Detalhe = document.getElementById("nota2Detalhe");
-  const notaRedacaoDetalhe = document.getElementById("notaRedacaoDetalhe");
   const nota3Detalhe = document.getElementById("nota3Detalhe");
   const notaFinalDetalhe = document.getElementById("notaFinal");
   const notaCorteDetalhe = document.getElementById("notaCorteCurso");
   const classificacaoDetalhe = document.getElementById("classificacao");
 
-  const notaFinal = ((nota1 + nota2 + notaRedacao + nota3) / 4).toFixed(2);
+  if (nota3Detalhe) nota3Detalhe.innerText = nota3.toFixed(2);
+  if (notaCorteDetalhe) notaCorteDetalhe.innerText = notaCorte.toFixed(2);
+  if (notaFinalDetalhe) notaFinalDetalhe.innerText = mediaFinal.toFixed(2);
 
-  nota1Detalhe.innerText = nota1.toFixed(2);
-  nota2Detalhe.innerText = nota2.toFixed(2);
-  notaRedacaoDetalhe.innerText = notaRedacao.toFixed(2);
-  nota3Detalhe.innerText = nota3.toFixed(2);
-  notaCorteDetalhe.innerText = notaCorte.toFixed(2);
-  notaFinalDetalhe.innerText = mediaFinal.toFixed(2);
-
-  if (nota3 > 100) {
-      classificacaoDetalhe.innerText = "Reprovado (Impossível passar, nota necessária > 100)";
-  } else {
-      classificacaoDetalhe.innerText = "Aprovado!";
+  if (classificacaoDetalhe) {
+      if (nota3 > 100) {
+          classificacaoDetalhe.innerText = "Reprovado (Impossível passar, nota necessária > 100)";
+          classificacaoDetalhe.style.color = "#d32f2f";
+          classificacaoDetalhe.style.background = "transparent";
+      } else {
+          classificacaoDetalhe.innerText = "Aprovado!";
+          classificacaoDetalhe.style.color = "#2e7d32";
+          classificacaoDetalhe.style.background = "transparent";
+      }
   }
 
   detalhesDiv.style.display = "block";
