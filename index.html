@@ -9,26 +9,43 @@
 <body>
     <div class="container">
         <div class="logonome">
-            <img src="styles/css/unnamed.png" alt="">
             <h1>Calculadora SSA-3</h1>
             <p>Primeira Chamada</p>
         </div>
 
-        <div class="search-box">
-            <label for="searchNome">Busque seu nome:</label>
-            <input type="text" id="searchNome" placeholder="Digite seu nome completo..." autocomplete="off">
-            <div id="searchResults" class="search-results"></div>
+        <!-- PASSO 1: BUSCA DE NOME -->
+        <div id="passo1">
+            <div class="search-box">
+                <label for="searchNome">Qual o seu nome?</label>
+                <input type="text" id="searchNome" placeholder="Digite pelo menos 3 letras..." autocomplete="off">
+                <div id="searchResults" class="search-results"></div>
+            </div>
         </div>
-        
-        <div class="inputs" id="mainInputs" style="display: none;">
-            <input type="number" id="nota1" placeholder="Nota 1 (SSA-1)" min="0" max="100">
-            <input type="number" id="nota2" placeholder="Nota 2 (SSA-2)" min="0" max="100">
-            <input type="number" id="notaRedacao" placeholder="Nota da Redação" min="0" max="100">
-            <input type="number" id="nota3" placeholder="Nota 3 (SSA-3)" readonly>
-        </div>
-    
-        <div class="cursosbox">
-            <select id="curso">
+
+        <!-- PASSO 2: PERGUNTA DA REDAÇÃO E CURSO -->
+        <div id="passo2" style="display: none;">
+            <div class="logonome">
+                <h2 id="nomeAlunoSelecionado" class="aluno-saudacao"></h2>
+                <div id="notasAnteriores" class="notas-container">
+                    <div class="nota-box ssa1">
+                        <span class="nota-label">SSA-1</span>
+                        <span id="valNota1" class="nota-valor">--</span>
+                    </div>
+                    <div class="nota-box ssa2">
+                        <span class="nota-label">SSA-2</span>
+                        <span id="valNota2" class="nota-valor">--</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="search-box">
+                <label for="notaRedacao">Quanto você acha que vai tirar na redação?</label>
+                <input type="number" id="notaRedacao" placeholder="Ex: 85" min="0" max="100">
+            </div>
+
+            <div class="cursosbox" style="margin-top: 15px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px;">Selecione seu curso:</label>
+                <select id="curso">
                 <optgroup label="Recife">
                     <option value="medicina_recife">Medicina</option>
                     <option value="engenharia_comp_recife">Engenharia da Computação</option>
@@ -110,15 +127,21 @@
                     <option value="servico_social_palmares">Serviço Social</option>
                 </optgroup>
             </select>
+            
+            <!-- Inputs ocultos para armazenar as notas do aluno selecionado -->
+            <input type="hidden" id="nota1">
+            <input type="hidden" id="nota2">
+            <input type="hidden" id="nota3">
+
+            <button onclick="calcularNota3()" style="margin-top: 20px;">Ver Resultado</button>
         </div>
     
-        <button onclick="calcularNota3()">Calcular</button>
         <button id="btn2" onclick="limparTudo()"><i style="margin-right: 5px;" class="fa-solid fa-trash"></i>Limpar Tudo</button>
     
         <div class="result" id="resultado"></div>
     </div>
 
-    <div class="detailed-results" id="detalhes" style="display: none;">
+    <div class="detailed-results container" id="detalhes" style="display: none;">
         <h2>Detalhamento das Notas</h2>
         <p>Nota do Primeiro Ano (SSA-1): <span id="nota1Detalhe"></span></p>
         <p>Nota do Segundo Ano (SSA-2): <span id="nota2Detalhe"></span></p>

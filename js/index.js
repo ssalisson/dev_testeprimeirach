@@ -1,16 +1,26 @@
 let alunosData = [];
 
 // Carregar dados dos alunos
-fetch('js/alunos.json')
-  .then(response => response.json())
-  .then(data => {
-    alunosData = data;
-  })
-  .catch(error => console.error('Erro ao carregar alunos:', error));
+async function carregarAlunos() {
+  try {
+    const response = await fetch('js/alunos.json');
+    if (!response.ok) throw new Error('Falha ao carregar alunos.json');
+    alunosData = await response.json();
+    console.log('Alunos carregados:', alunosData.length);
+  } catch (error) {
+    console.error('Erro ao carregar alunos:', error);
+    // Fallback caso o fetch falhe (ex: rodando via file://)
+    console.warn('Dica: O navegador bloqueia fetch em arquivos locais (file://). Use o Live Server.');
+  }
+}
+
+carregarAlunos();
 
 const searchInput = document.getElementById('searchNome');
 const searchResults = document.getElementById('searchResults');
-const mainInputs = document.getElementById('mainInputs');
+const passo1 = document.getElementById('passo1');
+const passo2 = document.getElementById('passo2');
+const nomeAlunoSelecionado = document.getElementById('nomeAlunoSelecionado');
 
 searchInput.addEventListener('input', (e) => {
   const term = e.target.value.toUpperCase();
@@ -34,15 +44,29 @@ searchInput.addEventListener('input', (e) => {
 });
 
 function selecionarAluno(nome, ssa1, ssa2) {
-  searchInput.value = nome;
-  searchResults.style.display = 'none';
-  
+  // Guardar dados nos inputs ocultos
   document.getElementById('nota1').value = ssa1;
   document.getElementById('nota2').value = ssa2;
   
-  mainInputs.style.display = 'flex';
+  // Mostrar nome e notas anteriores na tela
+  nomeAlunoSelecionado.innerText = "Olá, " + nome + "!";
+  document.getElementById('valNota1').innerText = ssa1.toFixed(2);
+  document.getElementById('valNota2').innerText = ssa2.toFixed(2);
+  
+  // Trocar de passo
+  passo1.style.display = 'none';
+  passo2.style.display = 'block';
+  
+  // Focar na pergunta da redação
   document.getElementById('notaRedacao').focus();
 }
+
+// Permitir calcular ao apertar Enter na nota da redação
+document.getElementById('notaRedacao').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        calcularNota3();
+    }
+});
 
 const cursos = {
   // Recife
@@ -192,7 +216,6 @@ function mostrarDetalhes(nota1, nota2, notaRedacao, nota3, notaCorte, mediaFinal
 
 function limparTudo() {
   document.getElementById("searchNome").value = "";
-  document.getElementById("mainInputs").style.display = "none";
   document.getElementById("nota1").value = "";
   document.getElementById("nota2").value = "";
   document.getElementById("notaRedacao").value = "";
@@ -200,5 +223,9 @@ function limparTudo() {
   document.getElementById("resultado").innerHTML = "";
   document.getElementById("resultado").style.display = "none";
   document.getElementById("detalhes").style.display = "none";
+  
+  // Voltar para o passo 1
+  document.getElementById("passo1").style.display = "block";
+  document.getElementById("passo2").style.display = "none";
 }
 
