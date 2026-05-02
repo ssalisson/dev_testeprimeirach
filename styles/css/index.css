@@ -1,0 +1,230 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza verticalmente */
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    background-color: #000;
+    padding: 20px;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('upe-1024x694.webp') no-repeat center center;
+    background-size: cover;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 480px;  
+    z-index: 1;
+    margin: 20px auto;
+}
+
+/* Logo + nome */
+.logonome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logonome h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logonome p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.logonome img {
+    width: 30%;
+    margin-bottom: 8px;
+}
+
+/* Search Box */
+.search-box {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative; /* Para o search-results se basear aqui */
+}
+
+.search-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 15px;
+}
+
+.search-box input:focus {
+    border-color: rgb(87, 180, 87);
+}
+
+.search-results {
+    position: absolute;
+    background: white;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    z-index: 10;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    top: 100%; /* Cola logo abaixo do input */
+    left: 0;
+}
+
+.search-item {
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.search-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Inputs */
+.inputs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.inputs input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 15px;
+}
+
+.inputs input:focus {
+    border-color: rgb(87, 180, 87);
+}
+
+/* Select */
+.cursosbox select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+/* Botões */
+button {
+    width: 100%;
+    background-color: rgb(87, 180, 87);
+    border: none;
+    border-radius: 6px;
+    margin-top: 12px;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(72, 150, 72);
+}
+
+#btn2 {
+    background-color: rgb(216, 76, 76);
+}
+
+#btn2:hover {
+    background-color: rgb(180, 60, 60);
+}
+
+/* Resultados */
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    display: none;
+    padding: 15px;
+    border-radius: 6px;
+    background: #f7f7f7;
+}
+
+.detailed-results {
+    width: 100%;
+    max-width: 480px;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.detailed-results h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: #222;
+}
+
+.detailed-results p {
+    margin: 6px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+#nota3 {
+    background-color: #e9e9e9;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+@media (max-width: 736px) {
+    .container,
+    .detailed-results {
+        width: 90%;
+    }
+
+    .inputs {
+        flex-direction: column;
+    }
+}

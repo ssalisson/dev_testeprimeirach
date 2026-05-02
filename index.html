@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora SSA - Primeira Chamada</title>
+    <link rel="stylesheet" href="styles/css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logonome">
+            <img src="styles/css/unnamed.png" alt="">
+            <h1>Calculadora SSA-3</h1>
+            <p>Primeira Chamada</p>
+        </div>
+
+        <div class="search-box">
+            <label for="searchNome">Busque seu nome:</label>
+            <input type="text" id="searchNome" placeholder="Digite seu nome completo..." autocomplete="off">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+        
+        <div class="inputs" id="mainInputs" style="display: none;">
+            <input type="number" id="nota1" placeholder="Nota 1 (SSA-1)" min="0" max="100">
+            <input type="number" id="nota2" placeholder="Nota 2 (SSA-2)" min="0" max="100">
+            <input type="number" id="notaRedacao" placeholder="Nota da Redação" min="0" max="100">
+            <input type="number" id="nota3" placeholder="Nota 3 (SSA-3)" readonly>
+        </div>
+    
+        <div class="cursosbox">
+            <select id="curso">
+                <optgroup label="Recife">
+                    <option value="medicina_recife">Medicina</option>
+                    <option value="engenharia_comp_recife">Engenharia da Computação</option>
+                    <option value="direito_recife">Direito</option>
+                    <option value="odontologia_recife">Odontologia</option>
+                    <option value="ciencias_biologicas_recife">Ciências Biológicas</option>
+                    <option value="enfermagem_recife">Enfermagem</option>
+                    <option value="saude_coletiva_recife">Saúde Coletiva</option>
+                    <option value="terapia_ocupacional_recife">Terapia Ocupacional</option>
+                    <option value="educacao_fisica_recife">Educação Física</option>
+                    <option value="ciencias_sociais_recife">Ciências Sociais (Licenciatura)</option>
+                    <option value="administracao_recife">Administração</option>
+                    <option value="engenharia_civil_recife">Engenharia Civil</option>
+                    <option value="engenharia_automacao_controle_recife">Engenharia de Automação e Controle</option>
+                    <option value="engenharia_eletrica_eletrotecnica_recife">Engenharia Elétrica Eletrotécnica</option>
+                    <option value="engenharia_telecom_recife">Engenharia de Telecomunicações</option>
+                    <option value="engenharia_eletrica_recife">Engenharia Elétrica</option>
+                    <option value="engenharia_mecanica_recife">Engenharia Mecânica</option>
+                    <option value="fisica_material_recife">Física de Materiais</option>
+                </optgroup>
+                <optgroup label="Caruaru">
+                    <option value="sistemas_informacao_caruaru">Sistemas de Informação</option>
+                    <option value="administracao_caruaru">Administração</option>
+                </optgroup>
+                <optgroup label="Nazaré da Mata">
+                    <option value="ciencia_computacao_nazare">Ciência da Computação (L)</option>
+                    <option value="ciencias_biologicas_nazare">Ciências Biológicas</option>
+                    <option value="geografia_nazare">Geografia</option>
+                    <option value="historia_nazare">História</option>
+                    <option value="letras_port_esp_nazare">Letras Português/Espanhol</option>
+                    <option value="letras_port_ing_nazare">Letras Português/Inglês</option>
+                    <option value="matematica_nazare">Matemática</option>
+                    <option value="pedagogia_nazare">Pedagogia</option>
+                    <option value="tecnologia_logistica_nazare">Tecnologia em Logística</option>
+                </optgroup>
+                <optgroup label="Garanhuns">
+                    <option value="medicina_garanhuns">Medicina</option>
+                    <option value="psicologia_garanhuns">Psicologia</option>
+                    <option value="engenharia_software_garanhuns">Engenharia de Software</option>
+                    <option value="computacao_garanhuns">Computação (L)</option>
+                    <option value="ciencias_biologicas_l_garanhuns">Ciências Biológicas (L)</option>
+                    <option value="geografia_garanhuns">Geografia</option>
+                    <option value="historia_garanhuns">História</option>
+                    <option value="letras_portuguesa_garanhuns">Letras Língua Portuguesa</option>
+                    <option value="matematica_garanhuns">Matemática</option>
+                    <option value="pedagogia_garanhuns">Pedagogia</option>
+                </optgroup>
+                <optgroup label="Petrolina">
+                    <option value="fisioterapia_petrolina">Fisioterapia</option>
+                    <option value="enfermagem_petrolina">Enfermagem</option>
+                    <option value="nutricao_petrolina">Nutrição</option>
+                    <option value="geografia_petrolina">Geografia</option>
+                    <option value="historia_petrolina">História</option>
+                    <option value="letras_port_ingles_petrolina">Letras Português/Inglês</option>
+                    <option value="letras_port_espanhol_petrolina">Letras Português/Espanhol</option>
+                    <option value="matematica_petrolina">Matemática</option>
+                    <option value="ciencias_biologicas_l_petrolina">Ciências Biológicas (L)</option>
+                    <option value="pedagogia_petrolina">Pedagogia</option>
+                </optgroup>
+                <optgroup label="Arcoverde">
+                    <option value="direito_arcoverde">Direito</option>
+                    <option value="odontologia_arcoverde">Odontologia</option>
+                </optgroup>
+                <optgroup label="Serra talhada">
+                    <option value="medicina_serratalhada">Medicina</option>
+                </optgroup>
+                <optgroup label="Surubim">
+                    <option value="engenharia_software_surubim">Engenharia de Software</option>
+                    <option value="sistemas_informacao_surubim">Sistemas de Informação</option>
+                </optgroup>
+                <optgroup label="Salgueiro">
+                    <option value="administracao_salgueiro">Administração</option>
+                </optgroup>
+                <optgroup label="Ouricuri">
+                    <option value="enfermagem_ouricuri">Enfermagem</option>
+                </optgroup>
+                <optgroup label="Palmares">
+                    <option value="administracao_palmares">Administração</option>
+                    <option value="servico_social_palmares">Serviço Social</option>
+                </optgroup>
+            </select>
+        </div>
+    
+        <button onclick="calcularNota3()">Calcular</button>
+        <button id="btn2" onclick="limparTudo()"><i style="margin-right: 5px;" class="fa-solid fa-trash"></i>Limpar Tudo</button>
+    
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <div class="detailed-results" id="detalhes" style="display: none;">
+        <h2>Detalhamento das Notas</h2>
+        <p>Nota do Primeiro Ano (SSA-1): <span id="nota1Detalhe"></span></p>
+        <p>Nota do Segundo Ano (SSA-2): <span id="nota2Detalhe"></span></p>
+        <p>Nota da Redação: <span id="notaRedacaoDetalhe"></span></p>
+        <p>Nota da prova objetiva (SSA-3): <span id="nota3Detalhe"></span></p>
+        <p>Média Final no SSA-3: <span id="notaFinal"></span></p>
+        <p>Nota de corte do curso: <span id="notaCorteCurso"></span></p>
+        <p>Classificação: <span id="classificacao"></span></p>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="https://kit.fontawesome.com/18020f9fb7.js" crossorigin="anonymous"></script>
+</body>
+</html>
