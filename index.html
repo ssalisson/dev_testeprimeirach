@@ -46,12 +46,13 @@
             
             <div class="search-box">
                 <label for="notaRedacao">Quanto você acha que vai tirar na redação?</label>
-                <input type="number" id="notaRedacao" placeholder="Ex: 85" min="0" max="100">
+                <input type="number" id="notaRedacao" placeholder="" min="0" max="100">
             </div>
 
             <div class="cursosbox" style="margin-top: 15px;">
                 <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px;">Selecione seu curso:</label>
                 <select id="curso">
+                <option value="" disabled selected>Escolha um curso...</option>
                 <optgroup label="Recife">
                     <option value="medicina_recife">Medicina</option>
                     <option value="engenharia_comp_recife">Engenharia da Computação</option>

@@ -157,6 +157,12 @@ function calcularNota3() {
   const cursoSelecionado = document.getElementById("curso").value;
   const resultadoDiv = document.getElementById("resultado");
 
+  if (!cursoSelecionado) {
+    resultadoDiv.innerHTML = "Por favor, selecione um curso.";
+    resultadoDiv.style.display = "block";
+    return;
+  }
+
   const nota1 = parseFloat(nota1Input.value) || 0;
   const nota2 = parseFloat(nota2Input.value) || 0;
   const notaRedacao = parseFloat(notaRedacaoInput.value) || 0;
@@ -225,20 +231,30 @@ function mostrarDetalhes(nota1, nota2, notaRedacao, nota3, notaCorte, mediaFinal
 }
 
 function limparResultado() {
-  // Limpa apenas os campos de resultado e detalhamento
+  // Limpa campos de resultado e detalhamento
   document.getElementById("resultado").innerHTML = "";
   document.getElementById("resultado").style.display = "none";
   document.getElementById("detalhes").style.display = "none";
-  // Mantém o nome, as notas do SSA1/SSA2, a nota da redação e o curso selecionado
+  
+  // Limpa nota da redação e volta o curso para a opção padrão
+  document.getElementById("notaRedacao").value = "";
+  document.getElementById("curso").selectedIndex = 0;
+  
+  // Mantém o nome e as notas do SSA1/SSA2
 }
 
 function reiniciarTudo() {
   // Limpa tudo e volta para a tela inicial
   document.getElementById("searchNome").value = "";
+  document.getElementById("searchResults").innerHTML = "";
+  document.getElementById("searchResults").style.display = "none";
+  
   document.getElementById("nota1").value = "";
   document.getElementById("nota2").value = "";
   document.getElementById("notaRedacao").value = "";
+  document.getElementById("curso").selectedIndex = 0;
   document.getElementById("nota3").value = "";
+  
   document.getElementById("resultado").innerHTML = "";
   document.getElementById("resultado").style.display = "none";
   document.getElementById("detalhes").style.display = "none";
