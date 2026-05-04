@@ -295,6 +295,12 @@ body::before {
 }
 
 /* Botões */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
 button {
     width: 100%;
     background-color: rgb(87, 180, 87);
@@ -306,19 +312,31 @@ button {
     cursor: pointer;
     color: white;
     font-weight: bold;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.1s;
 }
 
 button:hover {
     background-color: rgb(72, 150, 72);
 }
 
-#btn2 {
-    background-color: rgb(216, 76, 76);
+button:active {
+    transform: scale(0.98);
 }
 
-#btn2:hover {
-    background-color: rgb(180, 60, 60);
+.btn-secondary {
+    background-color: #607d8b;
+}
+
+.btn-secondary:hover {
+    background-color: #455a64;
+}
+
+.btn-danger {
+    background-color: #d32f2f;
+}
+
+.btn-danger:hover {
+    background-color: #b71c1c;
 }
 
 /* Resultados */

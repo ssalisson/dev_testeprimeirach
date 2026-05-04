@@ -186,6 +186,11 @@ function calcularNota3() {
       const mediaFinal = corte; // A nota necessária é justamente para atingir o corte
       mostrarDetalhes(nota1, nota2, notaRedacao, nota3Arredondada, corte, mediaFinal, campus);
 
+      // Scroll suave até o resultado
+      setTimeout(() => {
+        resultadoDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+
   } else {
       resultadoDiv.innerHTML = "Curso não encontrado.";
       nota3Input.value = "";
@@ -219,7 +224,16 @@ function mostrarDetalhes(nota1, nota2, notaRedacao, nota3, notaCorte, mediaFinal
   detalhesDiv.style.display = "block";
 }
 
-function limparTudo() {
+function limparResultado() {
+  // Limpa apenas os campos de resultado e detalhamento
+  document.getElementById("resultado").innerHTML = "";
+  document.getElementById("resultado").style.display = "none";
+  document.getElementById("detalhes").style.display = "none";
+  // Mantém o nome, as notas do SSA1/SSA2, a nota da redação e o curso selecionado
+}
+
+function reiniciarTudo() {
+  // Limpa tudo e volta para a tela inicial
   document.getElementById("searchNome").value = "";
   document.getElementById("nota1").value = "";
   document.getElementById("nota2").value = "";

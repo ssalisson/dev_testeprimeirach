@@ -140,9 +140,12 @@
             <input type="hidden" id="nota3">
 
             <button onclick="calcularNota3()" style="margin-top: 20px;">Calcular nota do SSA</button>
+            
+            <div class="button-group">
+                <button id="btnLimpar" class="btn-secondary" onclick="limparResultado()"><i class="fa-solid fa-eraser"></i> Limpar</button>
+                <button id="btnReiniciar" class="btn-danger" onclick="reiniciarTudo()"><i class="fa-solid fa-rotate-left"></i> Reiniciar</button>
+            </div>
         </div>
-    
-        <button id="btn2" onclick="limparTudo()"><i style="margin-right: 5px;" class="fa-solid fa-trash"></i>Limpar Tudo</button>
     
         <div class="result" id="resultado"></div>
 
