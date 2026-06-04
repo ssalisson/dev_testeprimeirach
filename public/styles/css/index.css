@@ -1,0 +1,378 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza verticalmente */
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    background-color: black;
+    padding: 20px;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('upe-1024x694.webp') no-repeat center center;
+    background-size: cover;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 95%;
+    max-width: 480px;  
+    z-index: 1;
+    margin: 10px auto;
+}
+
+@media (min-width: 480px) {
+    .container {
+        padding: 30px;
+        width: 100%;
+    }
+}
+
+/* Logo Container */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-logo {
+    width: 100%;
+    max-width: 340px; /* Aumentado de 180px para 280px */
+    height: auto;
+    border-radius: 8px;
+}
+
+.header-divider {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #eee, transparent);
+    margin: 0 auto 20px auto;
+}
+
+/* Logo + nome */
+.logonome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logonome h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logonome p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.aluno-saudacao {
+    font-size: clamp(18px, 5vw, 24px);
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Search Box */
+.search-box {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative; /* Para o search-results se basear aqui */
+}
+
+.search-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 15px;
+}
+
+.search-box input:focus {
+    border-color: rgb(87, 180, 87);
+}
+
+/* Search Results */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 0 0 6px 6px;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.search-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.search-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* Notas Anteriores */
+.notas-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.nota-box {
+    background: #ffffff;
+    padding: 10px 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    min-width: 100px;
+    flex: 1;
+    max-width: 140px;
+    transition: transform 0.2s;
+}
+
+@media (min-width: 480px) {
+    .notas-container {
+        gap: 20px;
+    }
+    .nota-box {
+        padding: 15px 20px;
+        min-width: 120px;
+    }
+}
+
+.nota-box:hover {
+    transform: translateY(-2px);
+}
+
+.nota-box.ssa1 {
+    border: 2px solid #4caf50;
+    background: #f1f8e9;
+}
+
+.nota-box.ssa2 {
+    border: 2px solid #2196f3;
+    background: #e3f2fd;
+}
+
+.nota-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.ssa1 .nota-label {
+    color: #1b5e20;
+}
+
+.ssa2 .nota-label {
+    color: #0d47a1;
+}
+
+.nota-valor {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.ssa1 .nota-valor {
+    color: #2e7d32;
+}
+
+.ssa2 .nota-valor {
+    color: #1565c0;
+}
+
+/* Detalhamento das Notas */
+.detailed-results {
+    background: transparent;
+    padding: 20px 0 0 0;
+    margin-top: 20px;
+    width: 100%;
+    z-index: 1;
+    text-align: left;
+    border-top: 2px solid #eee;
+}
+
+.detailed-results h2 {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #000;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detailed-results p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    padding: 0;
+}
+
+.detailed-results span {
+    font-weight: normal;
+    color: #444;
+    font-size: 14px;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    min-width: auto;
+    text-align: right;
+}
+
+#notaFinal, #notaCorteCurso, #nota3Detalhe {
+    font-weight: normal;
+    background: transparent;
+    color: #444;
+    font-size: 14px;
+}
+
+#classificacao {
+    padding: 0;
+    border-radius: 0;
+    font-size: 14px;
+    text-align: left;
+    display: inline;
+    margin-top: 0;
+    width: auto;
+    background: transparent !important;
+}
+
+/* Select */
+.cursosbox select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+/* Botões */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    background-color: rgb(87, 180, 87);
+    border: none;
+    border-radius: 6px;
+    margin-top: 12px;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.1s;
+}
+
+button:hover {
+    background-color: rgb(72, 150, 72);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background-color: #607d8b;
+}
+
+.btn-secondary:hover {
+    background-color: #455a64;
+}
+
+.btn-danger {
+    background-color: #d32f2f;
+}
+
+.btn-danger:hover {
+    background-color: #b71c1c;
+}
+
+/* Resultados */
+.result {
+    margin-top: 25px;
+    padding: 30px 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    display: none;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.result-title {
+    font-size: clamp(16px, 4.5vw, 19px);
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.result-value {
+    display: block;
+    font-size: clamp(36px, 10vw, 48px);
+    color: #2e7d32;
+    font-weight: 900;
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.result-subtitle {
+    font-size: clamp(14px, 4vw, 17px);
+    color: #555;
+    font-weight: 500;
+}
+
+.result-subtitle strong {
+    color: #333;
+    font-weight: 800;
+}
