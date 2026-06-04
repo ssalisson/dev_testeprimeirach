@@ -10,8 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Servir arquivos estáticos da pasta public
-app.use('/styles', express.static(path.join(__dirname, 'public', 'styles')));
+// Em ambiente local, serve arquivos da pasta public
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Dados em memória para rapidez (carregados do JSON)
