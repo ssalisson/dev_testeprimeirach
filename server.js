@@ -109,11 +109,14 @@ app.get('/api/alunos', (req, res) => {
     if (term.length < 3) return res.send('');
     
     const matches = alunosData.filter(a => a.nome.includes(term)).slice(0, 10);
-    const html = matches.map(a => `
-      <div class="search-item" onclick="selecionarAluno('${a.nome}', ${a.ssa1}, ${a.ssa2})">
-        ${a.nome}
-      </div>
-    `).join('');
+    const html = matches.map(a => {
+       const nomeEscapado = a.nome.replace(/'/g, "\\'");
+       return `
+         <div class="search-item" onclick="selecionarAluno('${nomeEscapado}', ${a.ssa1}, ${a.ssa2})">
+           ${a.nome}
+         </div>
+       `;
+    }).join('');
     res.send(html);
 });
 
