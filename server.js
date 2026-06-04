@@ -9,16 +9,29 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
+
+// Servir arquivos estáticos da pasta public
+app.use('/styles', express.static(path.join(__dirname, 'public', 'styles')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Dados em memória para rapidez (carregados do JSON)
 let alunosData = [];
 try {
-    const data = fs.readFileSync(path.join(__dirname, 'server_data', 'alunos.json'), 'utf8');
+    const filePath = path.join(__dirname, 'server_data', 'alunos.json');
+    const data = fs.readFileSync(filePath, 'utf8');
     alunosData = JSON.parse(data);
     console.log(`Carregados ${alunosData.length} alunos.`);
 } catch (err) {
     console.error('Erro ao carregar alunos.json:', err);
+}
+
+// Exportar para o Vercel
+module.exports = app;
+
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Servidor rodando em http://localhost:${PORT}`);
+    });
 }
 
 const cursos = {
@@ -163,6 +176,3 @@ app.post('/api/calcular', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
