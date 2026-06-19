@@ -122,12 +122,19 @@ app.get('/api/alunos', (req, res) => {
     
     const matches = alunosData.filter(a => a.nome.includes(term)).slice(0, 10);
     const html = matches.map(a => {
-       const nomeEscapado = a.nome.replace(/'/g, "\\'");
-       return `
-         <div class="search-item" onclick="selecionarAluno('${nomeEscapado}', ${a.ssa1}, ${a.ssa2})">
-           ${a.nome}
-         </div>
-       `;
+        // Properly escape special characters for JavaScript strings
+        const nomeEscapado = a.nome
+            .replace(/\\/g, '\\\\')
+            .replace(/'/g, "\\'")
+            .replace(/"/g, '\\"')
+            .replace(/\n/g, '\\n')
+            .replace(/\r/g, '\\r')
+            .replace(/\t/g, '\\t');
+        return `
+          <div class="search-item" onclick="selecionarAluno('${nomeEscapado}', ${a.ssa1}, ${a.ssa2})">
+            ${a.nome.replace(/\n/g, ' ').replace(/\r/g, '')}
+          </div>
+        `;
     }).join('');
     res.send(html);
 });
