@@ -93,9 +93,26 @@ body::before {
 .aluno-saudacao {
     font-size: clamp(18px, 5vw, 24px);
     color: #1a1a1a;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     font-weight: 700;
     text-align: center;
+}
+
+.posicao-destaque {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    background-color: #f1f8e9;
+    border: 1px solid #4caf50;
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.posicao-destaque strong {
+    color: #2e7d32;
+    font-weight: 900;
+    font-size: 18px;
 }
 
 /* Search Box */

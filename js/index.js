@@ -33,7 +33,7 @@ searchInput.addEventListener('input', (e) => {
   
   if (matches.length > 0) {
     searchResults.innerHTML = matches.map(a => `
-      <div class="search-item" onclick="selecionarAluno('${a.nome}', ${a.ssa1}, ${a.ssa2})">
+      <div class="search-item" onclick="selecionarAluno('${a.nome}', ${a.ssa1}, ${a.ssa2}, '${a.pos}')">
         ${a.nome}
       </div>
     `).join('');
@@ -43,13 +43,14 @@ searchInput.addEventListener('input', (e) => {
   }
 });
 
-function selecionarAluno(nome, ssa1, ssa2) {
+function selecionarAluno(nome, ssa1, ssa2, pos) {
   // Guardar dados nos inputs ocultos
   document.getElementById('nota1').value = ssa1;
   document.getElementById('nota2').value = ssa2;
   
   // Mostrar nome e notas anteriores na tela
   nomeAlunoSelecionado.innerText = "Olá, " + nome + "!";
+  document.getElementById('posicaoAluno').innerText = pos;
   document.getElementById('valNota1').innerText = ssa1.toFixed(2);
   document.getElementById('valNota2').innerText = ssa2.toFixed(2);
   

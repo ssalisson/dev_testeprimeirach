@@ -32,6 +32,9 @@
         <div id="passo2" style="display: none;">
             <div class="logonome">
                 <h2 id="nomeAlunoSelecionado" class="aluno-saudacao"></h2>
+                <div class="posicao-destaque">
+                    Posição no Ranking Geral: <strong id="posicaoAluno">--</strong>º lugar
+                </div>
                 <div id="notasAnteriores" class="notas-container">
                     <div class="nota-box ssa1">
                         <span class="nota-label">SSA-1</span>
@@ -162,10 +165,11 @@
     <script>
         // Este script apenas lida com a interface. 
         // Toda a lógica de cálculo e dados estão protegidos no servidor (Backend).
-        async function selecionarAluno(nome, ssa1, ssa2) {
+        async function selecionarAluno(nome, ssa1, ssa2, pos) {
             document.getElementById('nota1').value = ssa1;
             document.getElementById('nota2').value = ssa2;
             document.getElementById('nomeAlunoSelecionado').innerText = "Olá, " + nome + "!";
+            document.getElementById('posicaoAluno').innerText = pos;
             document.getElementById('valNota1').innerText = ssa1.toFixed(2);
             document.getElementById('valNota2').innerText = ssa2.toFixed(2);
             document.getElementById('passo1').style.display = 'none';

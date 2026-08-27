@@ -131,7 +131,7 @@ app.get('/api/alunos', (req, res) => {
             .replace(/\r/g, '\\r')
             .replace(/\t/g, '\\t');
         return `
-          <div class="search-item" onclick="selecionarAluno('${nomeEscapado}', ${a.ssa1}, ${a.ssa2})">
+          <div class="search-item" onclick="selecionarAluno('${nomeEscapado}', ${a.ssa1}, ${a.ssa2}, '${a.pos}')">
             ${a.nome.replace(/\n/g, ' ').replace(/\r/g, '')}
           </div>
         `;
